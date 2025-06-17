@@ -38,20 +38,11 @@ wait = WebDriverWait(navegador, 15)
 loginButton = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[@class="button btn btn-info"]')))
 loginButton.click()
 
-
 wait = WebDriverWait(navegador, 15)
 root = wait.until(EC.element_to_be_clickable((By.XPATH, '//a[contains(normalize-space(.), "root")]')))
 root.click()
 
-time.sleep(1) 
-wait = WebDriverWait(navegador, 15)
-senac = wait.until(EC.element_to_be_clickable((By.XPATH, '//a[contains(normalize-space(.), "SENAC")]')))
-senac.click()
 
-time.sleep(1) 
-wait = WebDriverWait(navegador, 15)
-turma = wait.until(EC.element_to_be_clickable((By.XPATH, '//a[contains(normalize-space(.), "TSC - NOITE")]')))
-turma.click()
 
 #parte que não esta funcionando como deveria--------------
 

@@ -15,6 +15,11 @@ chrome_options.add_argument("--disable-web-security")
 def adicionar_role(wait, alunos, navegador):
 
     navegador.get("https://pnetlab6.inoutcloud.srv.br/store/public/admin/user_roles/view")
+
+    nome_folder = alunos.iloc[0]['Folder'].strip()
+    xpath_aluno = f'//span[normalize-space(text())="{nome_folder}"]'
+
+    role_name = alunos.iloc[0]['Role'].strip()
   
     wait = WebDriverWait(navegador, 15)
     add_role = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="app"]/div[3]/div[1]/div/div[2]/div[2]/div[1]/div')))
@@ -29,13 +34,27 @@ def adicionar_role(wait, alunos, navegador):
     f_path1.click()
     time.sleep(1)
 
-    nome_folder = alunos.iloc[0]['Folder'].strip()
-    xpath_aluno = f'//span[normalize-space(text())="{nome_folder}"]'
-    # Debug: Verificar quantos elementos estão presentes imediatamente
-    # Aguarda até que o elemento esteja presente e, em seguida, utiliza JavaScript para clicar nele
+
+
     arquivo_aluno = wait.until(EC.presence_of_element_located((By.XPATH, xpath_aluno)))
     arquivo_aluno.click()
 
-    nome_role = wait.until(EC.presence_of_element_located((By.XPATH, '//input[list="editlistinput659269"]' )))
-    nome_role.click()
-    input("Pressione Enter para continuar...")
+    nome_input = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'input.input_item_input[type="text"]')))
+    nome_input.click()
+    nome_input.send_keys(str(role_name))
+
+    checkbox = wait.until(EC.element_to_be_clickable((By.XPATH, '//label[text()="Rename or Move Folder"]')))
+    checkbox.click()
+    checkbox = wait.until(EC.element_to_be_clickable((By.XPATH, '//label[text()="Move Lab"]')))
+    checkbox.click()
+    checkbox = wait.until(EC.element_to_be_clickable((By.XPATH, '//label[text()="Rename Lab"]')))
+    checkbox.click()
+
+    add = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="file_mng_modal1750164689863210"]/div/div/div[2]/div[2]/button[1]')))
+    add.click()
+
+    input("terminar programa?")
+
+
+
+
