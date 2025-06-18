@@ -5,6 +5,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait  
 from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd
+
+
 import time
 chrome_options = Options()
 chrome_options.add_argument("--ignore-certificate-errors")
@@ -30,7 +32,7 @@ def adicionar_role(wait, alunos, navegador):
     senac_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//span[text()="SENAC"]')))
     senac_button.click()
 
-    f_path1 = wait.until(EC.element_to_be_clickable((By.XPATH, '//span[contains(normalize-space(.), "TSC - NOITE - 2025")]')))
+    f_path1 = wait.until(EC.element_to_be_clickable((By.XPATH, '//span[contains(normalize-space(.), "TSC - TESTE - 2025")]')))
     f_path1.click()
     time.sleep(1)
 
@@ -50,8 +52,11 @@ def adicionar_role(wait, alunos, navegador):
     checkbox = wait.until(EC.element_to_be_clickable((By.XPATH, '//label[text()="Rename Lab"]')))
     checkbox.click()
 
-    add = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="file_mng_modal1750164689863210"]/div/div/div[2]/div[2]/button[1]')))
-    add.click()
+    botao_add = WebDriverWait(navegador, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button.btn.btn-primary")))
+
+# Dá scroll até o botão
+    navegador.execute_script("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", botao_add)
+    botao_add.click()
 
     input("terminar programa?")
 
