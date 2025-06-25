@@ -67,3 +67,5 @@ docs/_build/
 *.csv
 *.tsv
 *.parquet
+
+*.xlsx
