@@ -18,8 +18,7 @@ chrome_options.add_argument("--disable-web-security")
 username = "pnetlab"
 userPassword = "@@pn3tl@b##2025"
 
-alunos = pd.read_excel('turma-2025-teste.xlsx')
-nome_role = "TSC-2025-NOITE-"
+
 
 navegador = webdriver.Chrome(options=chrome_options)
 
@@ -31,27 +30,15 @@ wait = WebDriverWait(navegador, 15)
 username_field = wait.until(EC.presence_of_element_located((By.XPATH, '//input[@placeholder="Username"]')))
 username_field.send_keys(str(username))
 
+wait = WebDriverWait(navegador, 15)
 passWord_field = wait.until(EC.presence_of_element_located((By.XPATH, '//input[@placeholder="Password"]')))
 passWord_field.send_keys(str(userPassword))
 
+wait = WebDriverWait(navegador, 15)
 loginButton = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[@class="button btn btn-info"]')))
 loginButton.click()
 
-root = wait.until(EC.element_to_be_clickable((By.XPATH, '//a[contains(normalize-space(.), "root")]')))
-root.click()
-
-
-
-#parte que não esta funcionando como deveria--------------
-
-#wait = WebDriverWait(navegador, 15)
-#add_arquivo = wait.until(EC._element_if_visible((By.XPATH, '[//*[@id="filesTree"]/tbody/tr[9]/td[2]/div[1]/div/input[2]]')))
-#add_arquivo.click()
-
-#---------------------------------------------------------
-#adicionar_role(wait, alunos, navegador)
-adicionar_usuario(wait, alunos, navegador)
-
-
-
-
+input("aperte algo")
+input("aperte algo")
+input("aperte algo")
+input("aperte algo")
